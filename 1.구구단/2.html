@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        // 상태(state) = 바뀌는 부분 / 바뀔 수 있는 부분
+        // 상태를 표현하는 법 : this.state { 상태 작성 } & this.setState( { 바꿀 상태 })
+
+        const e = React.createElement;
+
+        class LikeButton extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    liked: false,
+                }
+            }
+
+            render() {
+                return e(
+                    'button', 
+                    {onClick: () => { this.setState({ liked: true }) }, type: 'submit' },
+                    this.state.liked === true ? 'Liked' : 'Like');   
+                // <button onClick="oncClick" type="submit">Like</button> 라는 태그를 만들'겠'다
+                // HTML에서는 onclick인데 React에서는 onClick으로 camel case로 써줘야됨
+            }
+        }
+    </script>
+    <script>
+        ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+        // <div id="#root"><button>Like<button></div> 완성
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const e = React.createElement;
+    
+        class GuGuDan extends React.Component {
+            // constructor와 super(props) 안 넣어줘도 정상적으로 작동
+            state = {
+                first: Math.ceil(Math.random() * 9),
+                second: Math.ceil(Math.random() * 9),
+                value: '',
+                result: '',
+            }
+
+            onSubmit = (e) => {
+                e.preventDefault();
+                if(parseInt(this.state.value) === this.state.first * this.state.second){
+                    this.setState({
+                        result: `정답 : ${this.state.first} 곱하기 ${this.state.second}는 ${this.state.value}!`,
+                        value: '',
+                        first: Math.ceil(Math.random() * 9),
+                        second: Math.ceil(Math.random() * 9),
+                    });
+                } else {
+                    this.setState({
+                        result: '땡',
+                        value: '',
+                    });
+                }
+            }
+
+            onChange = (e) => {
+                this.setState({ value: e.target.value })
+            }
+
+            render() {
+                return (
+                    // 지금은 React.Fragment로 감싸줘야하지만 바벨2가 설치되거나 나중에 웹팩을 사용하면 <> </>와 같이 빈 태그로 감싸주면 된다.
+                    <React.Fragment>
+                        <div>{this.state.first}곱하기{this.state.second}는?</div>
+                        <form onSubmit = {this.onSubmit}>
+                            <input type="number" value={this.state.value} onChange = {this.onChange}/>
+                            <button>입력!</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                    </React.Fragment>
+                );
+            }
+        }
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+    </script>
+</body>
+</html>
