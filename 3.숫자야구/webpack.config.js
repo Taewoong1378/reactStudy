@@ -3,7 +3,7 @@ const path = require('path');
 const RefreshWebpackPlugin  = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
-    name: 'wordrelay-setting', // 맘대로 정하면됨
+    name: 'baseball-setting', // 맘대로 정하면됨
     mode: 'development', // 실서비스에서는 production으로 바꿔주고 배포하면 됨
     devtool: 'eval', // 빠르게 하겠다는 것
     resolve: {
