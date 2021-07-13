@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Ball from './Ball';
+import Ball from './Ballmemo';
 
 function getWinNumbers() {
   console.log('getWinNumbers');
@@ -18,7 +18,7 @@ class Lotto extends Component {
     winNumbers: getWinNumbers(), // 당첨 숫자들
     winBalls: [],
     bonus: null, // 보너스 공
-    redo: false,
+    redo: false,  // 로또 한 번 뽑고 난 후 재실행
   };
 
   timeouts = [];
@@ -26,7 +26,9 @@ class Lotto extends Component {
   runTimeouts = () => {
     console.log('runTimeouts');
     const { winNumbers } = this.state;
+    // 공 6개 뽑기
     for (let i = 0; i < winNumbers.length - 1; i++) {
+      // 보너스공 하나 빼기
       this.timeouts[i] = setTimeout(() => {
         this.setState((prevState) => {
           return {
@@ -35,6 +37,7 @@ class Lotto extends Component {
         });
       }, (i + 1) * 1000);
     }
+    // 보너스공 뽑기
     this.timeouts[6] = setTimeout(() => {
       this.setState({
         bonus: winNumbers[6],
@@ -86,6 +89,7 @@ class Lotto extends Component {
         </div>
         <div>보너스!</div>
         {bonus && <Ball number={bonus} />}
+        {/* redo가 false일 때는 '한 번 더' 버튼이 안 보이다가 redo가 true가 되면 한 번 더 버튼이 나타난다 */}
         {redo && <button onClick={this.onClickRedo}>한 번 더!</button>}
       </>
     );

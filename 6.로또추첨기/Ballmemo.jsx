@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 
+// state를 안썼기 떄문에 Hooks가 아니라 함수 컴포넌트라고 부른다.
 const Ball = memo(({ number }) => {
   let background;
   if (number <= 10) {
