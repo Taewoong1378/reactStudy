@@ -24,7 +24,7 @@ const { memo } = require('react');
 // }
 
 const Try = memo(({ tryInfo }) => {
-    // prop를 사용할 때는 자식의 값을 임의로 바꿔줘선 안된다
+    // props를 사용할 때는 자식의 값을 임의로 바꿔줘선 안된다
     // ex. tryInfo.try = 'hello'
     // 값을 바꾸고 싶으면 부모에서 바꿔줘야함
     return (
