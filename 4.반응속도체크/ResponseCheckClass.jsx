@@ -29,7 +29,7 @@ class ResponseCheckClass extends Component {
             clearTimeout(this.timeout);
             this.setState({
                 state: 'waiting',
-                mwssage: '너무 성급하시군요! 초록색이 된 후에 클릭하세요.',
+                message: '너무 성급하시군요! 초록색이 된 후에 클릭하세요.',
             })
         } else if (state === 'now') {   // 반응속도 체크
             this.endTime = new Date();
@@ -44,6 +44,7 @@ class ResponseCheckClass extends Component {
     };  
 
     onReset = () => {
+        const { result } = this.state;
         this.setState({
             result: [],
         });
