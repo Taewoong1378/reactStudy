@@ -9,50 +9,31 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
+<script>
+
+    document.addEventListener('DOMContentLoaded',()=>{
+  
+      const radios = document.querySelectorAll('[name=pet]');
+      const output = document.querySelector('#output');
+  
+      radios.forEach((radio)=>{
+        radio.addEventListener('change',(event)=>{
+          const current = event.currentTarget;
+          if(current.checked){
+            output.textContent = `좋아하는 애완동물은 ${current.value}이시군요!`
+          }
+        })
+      })
+    })
+  </script>
 <body>
-    <div id="root"></div>
-    <script type="text/babel">
-
-    const GuGuDan = () => {
-
-        const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
-        const [second, setSecond] = React.useState(Math.ceil(Math.random()*9));
-        const [value, setValue] = React.useState('');
-        const [result, setResult] = React.useState('');
-        const inputRef = React.useRef();
-
-        const onChangeInput = (e) => {
-            setValue(e.target.value);
-        };
-
-        const onSubmitForm = (e) => {
-            e.preventDefault();
-            if(parseInt(value) === first * second){
-                setResult('정답: '  + `${first} 곱하기 ${second}는 ${first * second}!`);
-                setFirst(Math.ceil(Math.random()*9));
-                setSecond(Math.ceil(Math.random()*9));
-                setValue('');
-                inputRef.current.focus();
-            } else {
-                setResult('땡');
-                setValue('');
-                inputRef.current.focus();
-            }
-        }
-
-        return <React.Fragment>
-            <div>{first}곱하기{second}는?</div>
-            <form onSubmit={onSubmitForm}>
-                <input ref={inputRef} type="number" onChange={onChangeInput} value={value} />
-                <button>입력!</button>
-            </form>
-            <div>{result}</div>
-            </React.Fragment>
-    }
-    </script>
-    <script type="text/babel">
-        ReactDOM.render(<GuGuDan/>, document.querySelector('#root'));
-    </script>
+    <h1># 좋아하는 애완동물을 선택해주세요</h1>
+    <input type="radio" name="pet" value="강아지"> 강아지
+    <input type="radio" name="pet" value="고양이"> 고양이
+    <input type="radio" name="pet" value="햄스터"> 햄스터
+    <input type="radio" name="pet" value="기타"> 기타
+    <hr>
+    <h1 id="output"></h1>
 </body>
 </html>
 
