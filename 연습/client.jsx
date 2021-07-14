@@ -3,4 +3,4 @@ const ReactDOM = require('react-dom');
 
 const WordRelay = require('./WordRelay');
 
-ReactDOM.render(<WordRelay/>, document.querySelector('#root'));   
+ReactDOM.render(<WordRelay/>, document.querySelector('#root'));
