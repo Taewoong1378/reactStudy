@@ -3,7 +3,7 @@ const path = require('path');
 const RefreshWebpackPlugin  = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
-    name: 'Baseball-setting',
+    name: 'ResponseCheck-setting',
     mode: 'development', // 실서비스에서는 production으로
     devtool: 'eval', 
     resolve: {
