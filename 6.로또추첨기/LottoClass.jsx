@@ -52,8 +52,18 @@ class Lotto extends Component {
     console.log('로또 숫자를 생성합니다.');
   }
 
+  // setState가 될 때마다 componentDidUpdate가 실행된다.
+  // 따라서 만약 조건문을 넣지않고 아래와 같이 사용한다면 runTimeouts이 랜더링 될때마다 계속 실행된다.
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   this.runTimeouts();
+  // }
+  
+  // 따라서 componentDidUpdate에서는 조건문을 달아주는게 거의 필수!
+
   componentDidUpdate(prevProps, prevState) {
     console.log('didUpdate');
+    // 로또 숫자를 다 뽑고 나서 한번더를 눌러서 winBalls의 length가 초기화 됐을 때 runTimeouts이 실행됨
     if (this.state.winBalls.length === 0) {
       this.runTimeouts();
     }
@@ -69,6 +79,7 @@ class Lotto extends Component {
   }
 
   onClickRedo = () => {
+    // 버튼 누르면 초기화
     console.log('onClickRedo');
     this.setState({
       winNumbers: getWinNumbers(), // 당첨 숫자들
