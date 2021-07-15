@@ -76,12 +76,12 @@ const Lotto = () => {
   const onClickRedo = useCallback(() => {
     console.log('onClickRedo');
     console.log(winNumbers);
-    // 만약 뒤에 배열을 비어둘 경우, winNumbers가 새로 뽑히더라도 업데이트 되지 않고 기존의 것만을 계속해서 기억하는 현상이 발생한다.
+    // 만약 뒤에 배열을 비워둘 경우, winNumbers가 새로 뽑히더라도 업데이트 되지 않고 기존의 것만을 계속해서 기억하는 현상이 발생한다.
     
     // 따라서 useCallback 안에서 사용되는 state는 뒤에 배열에 넣어주어야한다. 뒤에 배열이 들어간 인수가 바뀌면 재실행된다. 
 
     // 자식 컴포넌트에 함수를 넘길 때는 useCallback을 반드시 넣어줘야한다.
-    //  line을 보면 Ball 자식 컴포넌트에 onClickRedo 함수를 넘겨주고 있다.
+    // 100 line을 보면 Ball 자식 컴포넌트에 onClickRedo 함수를 넘겨주고 있다.
     setWinNumbers(getWinNumbers());
     setWinBalls([]);
     setBonus(null);
