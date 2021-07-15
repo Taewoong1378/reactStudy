@@ -17,10 +17,17 @@ const scores = {
 };
 
 const computerChoice = (imgCoord) => {
-  return Object.entries(rspCoords).find(function(v) {
+  return Object.entries(rspCoords).find((v) => {
     return v[1] === imgCoord;
   })[0];
 };
+
+// v[0] = 바위, 가위, 보
+// v[1] == 0, -142px, -284px
+// imgCoord : 이미지 좌표 (0 or -142px or -284px)
+// 컴퓨터가 선택한 가위, 바위, 보를 나타낸다.
+
+// find 메서드는 callback 함수가 참을 반환 할 때까지 해당 배열의 각 요소에 대해서 callback 함수를 실행합니다. 만약 어느 요소를 찾았다면 find 메서드는 해당 요소의 값을 즉시 반환하고, 그렇지 않았다면 undefined 를 반환합니다.
 
 class RSP extends Component {
   state = {
