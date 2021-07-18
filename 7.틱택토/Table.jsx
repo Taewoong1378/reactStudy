@@ -6,10 +6,12 @@ import Tr from './Tr';
 // 그 배열을 각각 Tr로 만드는 것
 // 즉, 결과는 [<Tr />, <Tr />, <Tr />]
 // rowIndex = 각각의 행 index
-const Table = ({ onClick, tableData, dispatch }) => {
+const Table = ({ tableData, dispatch }) => {
   return (
     <table>
-      {Array(tableData.length).fill().map((tr, i)=> (<Tr  dispatch={dispatch} rowIndex={i} rowData={tableData[i]} />))}
+      {Array(tableData.length).fill().map((tr, i)=> (
+      <Tr  dispatch={dispatch} rowIndex={i} rowData={tableData[i]} />
+      ))}
     </table>
   );
 }
