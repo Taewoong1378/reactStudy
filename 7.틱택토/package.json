@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack serve --env development"
   },
-  "author": "ZeroCho",
+  "author": "taewoong",
   "license": "ISC",
   "dependencies": {
     "react": "^17.0.1",
