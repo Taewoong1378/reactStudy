@@ -1,10 +1,11 @@
 const React = require('react');
-const { useState, useRef } = React;
+const { useState, useRef, useMemo } = React;
 const Try = require('./Try');
 
 // this를 사용하지 않은 함수이기 때문에 바깥으로 빼줬다
 const getNumbers = () => {
     // 숫자 4개를 랜덤하게 뽑는 함수 (겹치지 않게)
+    console.log('getNumbers');
     let output = [];
     for(let i=0; i<4; i++){
         output.push(Math.ceil(Math.random() * 9));
@@ -24,7 +25,9 @@ const Baseball = () => {
     const [result, setResult] = useState('');
     const [value, setValue] = useState('');
     const [tries, setTries] = useState([]);
-    const [answer, setAnswer] = useState(getNumbers());
+    // const [answer, setAnswer] = useState(getNumbers());
+    const answerNumbers = useMemo(()=> getNumbers(), []);
+    const [answer, setAnswer] = useState(answerNumbers);
     const inputRef  = useRef();
     
 
