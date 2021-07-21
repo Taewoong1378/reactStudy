@@ -1,5 +1,5 @@
 const React = require('react');
-const { useState, useRef, useMemo } = React;
+const { useState, useRef, useMemo, useCallback } = React;
 const Try = require('./Try');
 
 // this를 사용하지 않은 함수이기 때문에 바깥으로 빼줬다
@@ -31,7 +31,7 @@ const Baseball = () => {
     const inputRef  = useRef();
     
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = useCallback((e) => {
         e.preventDefault();
         if(value === answer.join('')){
             setResult('홈런!');
@@ -71,11 +71,11 @@ const Baseball = () => {
                 inputRef.current.focus();
             }
         }
-    };
+    },[value, answer]);
 
-    const onChangeInput = (e) => {
+    const onChangeInput = useCallback((e) => {
         setValue(e.target.value);
-    };
+    },[]);
 
     return (
         <>
