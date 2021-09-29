@@ -1,29 +1,36 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-    name: 'gugudan', // 맘대로 정하면됨
-    mode: 'development', // 실서비스에서는 production으로 바꿔주고 배포하면 됨
-    devtool: 'eval', // 빠르게 하겠다는 것
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
+  mode: 'development',
+  devtool: 'inline-source-map', // hidden-source-map
+  resolve: {
+    extensions: ['.jsx', '.js'],
+  },
 
-    entry: {
-        app: ['./client'],  
-    },  // 입력
-
-    module: {
-        rules: [{
-            test: /\.jsx?/, 
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env', '@babel/preset-react'],
+  entry: {
+    app: './client',
+  },
+  module: {
+    rules: [{
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          ['@babel/preset-env', {
+            targets: {
+              browsers: ['> 1% in KR'], // browserslist
             },
-        }],
-    },
-    
-    output: {
-        path: __dirname,
-        filename: 'app.js'
-    },  // 출력
+            debug: true,
+          }],
+          '@babel/preset-react',
+        ],
+        plugins: [],
+      },
+    }],
+  },
+  output: {
+    filename: 'app.js',
+    path: path.join(__dirname, 'dist'),
+  },
 };

@@ -12,11 +12,6 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
-        // 상태(state) = 바뀌는 부분 / 바뀔 수 있는 부분
-        // 상태를 표현하는 법 : this.state { 상태 작성 } & this.setState( { 바꿀 상태 })
-
-        const e = React.createElement;
-
         class LikeButton extends React.Component {
             constructor(props) {
                 super(props);
@@ -25,19 +20,13 @@
                 }
             }
 
-        // render() {
-        //     return e(
-        //         'button', 
-        //         {onClick: () => { this.setState({ liked: true }) }, type: 'submit' },
-        //         this.state.liked === true ? 'Liked' : 'Like');   
-        // }
 
-
-        // 위와 같은 2.html의 코드를 아래처럼 가독성 있게 바꿀 수 있게 됐다.
-        // 그런데 아래 문법은 자바스크립트 안에서 html 태그를 사용하는 JSX 문법으로 이를 브라우저에서 이용하기 위해서는 babel을 이용해줘야한다. 따라서 line10, line 14처럼 바벨을 불러와서 사용해준다.
+        
             render() {
-                return <button type="submit" onClick={() => { this.setState({ liked: true })}}>{ this.state.liked ? 'Liked' : 'Like' }</button>;
-                // JSX ( JS + XML )
+                return 
+                    <button type="submit" onClick={() => { this.setState({ liked: true })}}>
+                        { this.state.liked ? 'Liked' : 'Like' }
+                    </button>;
             }
         }
     </script>
@@ -45,7 +34,12 @@
         // ReactDOM.render(e(LikeButton), document.querySelector('#root'));
         // 위 코드를 또 아래처럼 바꿀 수 있게 됐음
         // LikeButton 컴포넌트를 원하는만큼 아래처럼 편하게 사용할 수 있음
-        ReactDOM.render(<div><LikeButton /><LikeButton /><LikeButton /><LikeButton /></div>, document.querySelector('#root'));
+        ReactDOM.render(<div>
+            <LikeButton />
+            <LikeButton />
+            <LikeButton />
+            <LikeButton />
+        </div>, document.querySelector('#root'));
     </script>
 </body>
 </html>
