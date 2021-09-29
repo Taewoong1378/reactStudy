@@ -1,51 +1,36 @@
 const path = require('path');
-// 핫로딩 설정
-const RefreshWebpackPlugin  = require('@pmmmwh/react-refresh-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-    name: 'ResponseCheck-setting',
-    mode: 'development', // 실서비스에서는 production으로
-    devtool: 'eval', 
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
+  mode: 'development',
+  devtool: 'inline-source-map', // hidden-source-map
+  resolve: {
+    extensions: ['.jsx', '.js'],
+  },
 
-    entry: {
-        app: ['./client'],  
-    },  // 입력
-
-    module: {
-        rules: [{
-            test: /\.jsx?/, 
-            loader: 'babel-loader',
-            options: {
-                presets: [
-                    ['@babel/preset-env', {
-                        targets: {
-                            browsers: ['> 5% in KR'],
-                            // https://github.com/browserslist/browserslist
-                        }
-                    }], 
-                    '@babel/preset-react',
-                ],
-                plugins: [
-                    'react-refresh/babel',
-                ],
+  entry: {
+    app: './client',
+  },
+  module: {
+    rules: [{
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          ['@babel/preset-env', {
+            targets: {
+              browsers: ['> 1% in KR'], // browserslist
             },
-        }],
-    },
-    plugins: [
-        // 핫로딩 설정
-        new RefreshWebpackPlugin()
-    ],
-    output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'app.js',
-        publicPath: '/dist/',
-    },  // 출력
-    // 핫로딩 설정
-    devServer: {
-        publicPath: '/dist/',
-        hot: true,
-    },
+            debug: true,
+          }],
+          '@babel/preset-react',
+        ],
+        plugins: [],
+      },
+    }],
+  },
+  output: {
+    filename: 'app.js',
+    path: path.join(__dirname, 'dist'),
+  },
 };

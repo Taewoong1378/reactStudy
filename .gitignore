@@ -47,6 +47,12 @@ build/Release
 node_modules/
 연습/
 jspm_packages/
+practice/
+*.practice/
+.practice/
+practice2/
+*.practice2/
+.practice2/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

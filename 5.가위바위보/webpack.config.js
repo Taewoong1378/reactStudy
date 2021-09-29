@@ -1,13 +1,13 @@
 const path = require('path');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  name: 'rsp-dev',
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'inline-source-map', // hidden-source-map
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.jsx', '.js'],
   },
+
   entry: {
     app: './client',
   },
@@ -18,26 +18,19 @@ module.exports = {
       options: {
         presets: [
           ['@babel/preset-env', {
-            targets: {browsers: ['last 2 chrome versions']},
+            targets: {
+              browsers: ['> 1% in KR'], // browserslist
+            },
             debug: true,
           }],
           '@babel/preset-react',
         ],
-        plugins: ["react-refresh/babel"]
+        plugins: [],
       },
-      exclude: path.join(__dirname, 'node_modules'),
     }],
   },
-  plugins: [
-    new ReactRefreshWebpackPlugin(),
-  ],
   output: {
+    filename: 'app.js',
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/dist',
   },
-  devServer: {
-    publicPath: '/dist',
-    hot: true
-  }
 };
